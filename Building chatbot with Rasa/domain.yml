@@ -1,0 +1,128 @@
+session_config:
+  session_expiration_time: 90
+  carry_over_slots_to_new_session: true
+intents:
+- greet
+- affirm
+- restaurant_search
+- ask_budget
+- ask_restaurant
+- goodbye
+- ask_email
+- out_of_scope
+- deny
+- stop
+entities:
+- cuisine
+- location
+- people
+- price
+- budget
+- email
+slots:
+  cuisine:
+    type: text
+    influence_conversation: true
+  cuisine_validity:
+    type: categorical
+    influence_conversation: true
+    values:
+    - valid
+    - invalid
+  location:
+    type: text
+    influence_conversation: true
+  location_validity:
+    type: categorical
+    influence_conversation: true
+    values:
+    - valid
+    - invalid
+  results_validity:
+    type: categorical
+  budget:
+    type: categorical
+    influence_conversation: true
+    values:
+    - Lesser than Rs. 300
+    - Rs. 300 to 700
+    - More than Rs. 700
+  email:
+    type: text
+  email_message:
+    type: text
+responses:
+  utter_ask_cuisine:
+  - buttons:
+    - payload: chinese
+      title: chinese
+    - payload: mexican
+      title: mexican
+    - payload: italian
+      title: italian
+    - payload: american
+      title: american
+    - payload: south Indian
+      title: south Indian
+    - payload: north Indian
+      title: north Indian
+    text: what kind of cuisine would you like?
+  utter_ask_howcanhelp:
+  - text: how can I help you?
+  utter_ask_location:
+  - text: In what location?
+  - text: What location Would you like me to look?
+  - text: Please enter the city you would like to search
+  utter_default:
+  - text: Sorry, I couldn't understand. Please clarify
+  utter_location_invalid:
+  - text: We do not operate in that area yet. Please enter another location
+  utter_cuisine_invalid:
+  - text: Sorry we dont offer that cuisine at the moment
+  utter_goodbye:
+  - text: goodbye
+  - text: Bye-bye
+  - text: Thank you for using our app
+  - text: Have a Nice Day
+  - text: See You Later
+  utter_ask_details:
+  - text: Do you want the results emailed to you?
+  utter_ask_email:
+  - text: Please enter your e-mail address
+  - text: What's your email id?
+  utter_confirm_email:
+  - text: Restaurant list has been emailed to you
+  - text: email sent, Hope you enjoy.
+  - text: Email sent, Enjoy your meal.
+  utter_enjoy:
+  - text: Okay. Enjoy your meal!
+  utter_no_results:
+  - text: Sorry, Couldn't find restaurants with that cuisine and location combination
+  utter_greet:
+  - text: hey there! How may i help you
+  - text: Hi, How can I help you!
+  - text: Hey, How is it going. How May I help you Today
+  utter_ask_budget:
+  - buttons:
+    - payload: lesser than 300
+      title: Lesser than Rs. 300
+    - payload: between 300 to 700
+      title: Rs. 300 to 700
+    - payload: more than 700
+      title: More than Rs. 700
+    text: What's the average budget for two people?
+actions:
+- action_cuisine_valid
+- action_location_valid
+- action_search_restaurants
+- action_send_email
+- utter_ask_details
+- utter_ask_budget
+- utter_ask_cuisine
+- utter_ask_howcanhelp
+- utter_ask_location
+- utter_default
+- utter_goodbye
+- utter_greet
+- utter_confirm_email
+- utter_enjoy
